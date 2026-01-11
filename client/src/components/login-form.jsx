@@ -1,25 +1,21 @@
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Field,
   FieldDescription,
   FieldGroup,
   FieldLabel,
   FieldSeparator,
-} from "@/components/ui/field"
-import { Input } from "@/components/ui/input"
-import { useForm } from "react-hook-form"
-import { useState } from "react"
-import AlertDialog from "@/components/alert-dialog"
-import { useNavigate } from "react-router-dom"
-import { Spinner } from "./ui/spinner"
+} from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import { useForm } from "react-hook-form";
+import { useState } from "react";
+import AlertDialog from "@/components/alert-dialog";
+import { useNavigate } from "react-router-dom";
+import { Spinner } from "./ui/spinner";
 
-export function LoginForm({
-  className,
-  ...props
-}) {
-
+export function LoginForm({ className, ...props }) {
   const { register, handleSubmit } = useForm();
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -29,27 +25,33 @@ export function LoginForm({
     setIsLoading(true);
     let user = {};
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}user/login`, {
-        body: JSON.stringify({ email: data.email, password: data.password }),
-        headers: { "Content-Type": "application/json" },
-        method: 'POST',
-        credentials: "include",
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}user/login`,
+        {
+          body: JSON.stringify({ email: data.email, password: data.password }),
+          headers: { "Content-Type": "application/json" },
+          method: "POST",
+          credentials: "include",
+        },
+      );
 
       user = await response.json();
     } catch (error) {
-      user.message = error.message || 'Some error has occured'
+      user.message = error.message || "Some error has occured";
     }
 
     if (!user.success) {
-      setIsLoading(false)
-      return setError({ title: 'Error', desc: user.message || 'Some error has occured try again letter' })
+      setIsLoading(false);
+      return setError({
+        title: "Error",
+        desc: user.message || "Some error has occured try again letter",
+      });
     }
 
-    localStorage.setItem('access-token', user.tokens.accessToken);
-    localStorage.setItem('refresh-token', user.tokens.refreshToken);
-    navigate('/dashboard')
-  }
+    localStorage.setItem("access-token", user.tokens.accessToken);
+    localStorage.setItem("refresh-token", user.tokens.refreshToken);
+    navigate("/menu");
+  };
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card className="overflow-hidden p-0">
@@ -64,36 +66,61 @@ export function LoginForm({
               </div>
               <Field>
                 <FieldLabel htmlFor="email">Email</FieldLabel>
-                <Input id="email" {...register('email')} type="email" placeholder="m@example.com" required />
+                <Input
+                  id="email"
+                  {...register("email")}
+                  type="email"
+                  placeholder="m@example.com"
+                  required
+                />
               </Field>
               <Field>
                 <div className="flex items-center">
                   <FieldLabel htmlFor="password">Password</FieldLabel>
                 </div>
-                <Input id="password" {...register('password')} type="password" required />
+                <Input
+                  id="password"
+                  {...register("password")}
+                  type="password"
+                  required
+                />
               </Field>
               <Field>
-                {
-                  isLoading ?
-                    <Button variant={'outline'}><Spinner size={8} /></Button> :
-                    <Button type="submit">Login</Button>
-                }
+                {isLoading ? (
+                  <Button variant={"outline"}>
+                    <Spinner size={8} />
+                  </Button>
+                ) : (
+                  <Button type="submit">Login</Button>
+                )}
               </Field>
-              {error && <AlertDialog variant="destructive" title={error.title} desc={error.desc} />}
+              {error && (
+                <AlertDialog
+                  variant="destructive"
+                  title={error.title}
+                  desc={error.desc}
+                />
+              )}
               <FieldSeparator className="*:data-[slot=field-separator-content]:bg-card">
                 Or continue with
               </FieldSeparator>
               <Field className="grid grid-cols-3 gap-4">
                 <Button variant="outline" type="button">
-                  <span className={'grayscale invert-100 brightness-0'}>🔒</span>
+                  <span className={"grayscale invert-100 brightness-0"}>
+                    🔒
+                  </span>
                   <span className="sr-only">Login with Apple</span>
                 </Button>
                 <Button variant="outline" type="button">
-                  <span className={'grayscale invert-100 brightness-0'}>🔒</span>
+                  <span className={"grayscale invert-100 brightness-0"}>
+                    🔒
+                  </span>
                   <span className="sr-only">Login with Google</span>
                 </Button>
                 <Button variant="outline" type="button">
-                  <span className={'grayscale invert-100 brightness-0'}>🔒</span>
+                  <span className={"grayscale invert-100 brightness-0"}>
+                    🔒
+                  </span>
                   <span className="sr-only">Login with Meta</span>
                 </Button>
               </Field>
@@ -106,7 +133,8 @@ export function LoginForm({
             <img
               src="https://images.unsplash.com/photo-1512061942530-e6a4e9a5cf27?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1169"
               alt="Image"
-              className="absolute h-full w-full object-cover" />
+              className="absolute h-full w-full object-cover"
+            />
           </div>
         </CardContent>
       </Card>

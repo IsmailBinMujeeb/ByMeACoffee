@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "seed:users": "node seeds/user.seed.js"
+    "seed:users": "node seeds/user.seed.js",
+    "seed:items": "node seeds/item.seed.js",
+    "seed:orders": "node seeds/order.seed.js"
   },
   "keywords": [],
   "author": "",
@@ -20,12 +22,13 @@
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.19.1",
+    "mongoose": "^9.1.2",
     "mongoose-paginate-v2": "^1.9.1",
     "multer": "^2.0.2",
     "validator": "^13.15.15"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.10",
+    "quar": "^2.0.1"
   }
 }

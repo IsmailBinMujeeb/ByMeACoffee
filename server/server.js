@@ -12,26 +12,29 @@ import analyticRouter from "./routes/analytics.route.js";
 const app = express();
 const PORT = env.PORT;
 
-app.set('port', PORT);
+app.set("port", PORT);
 
-app.use(express.json())
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({ origin: env.CORS_ORIGINS, credentials: true }));
 app.use(cookieParser());
 
-app.use('/api/user', userRouter);
-app.use('/api/order', orderRouter);
-app.use('/api/menu-item', menuItemsRouter);
-app.use('/api/bill', billRouter);
-app.use('/api/analytics', analyticRouter);
+app.use("/api/user", userRouter);
+app.use("/api/order", orderRouter);
+app.use("/api/menu-item", menuItemsRouter);
+app.use("/api/bill", billRouter);
+app.use("/api/analytics", analyticRouter);
 
-app.get('/api/health', (_, res) => {
-    return res.status(200).json({ message: 'Server is healthy' });
+app.get("/api/health", (_, res) => {
+  return res.status(200).json({ message: "Server is healthy" });
 });
 
 // Render's free tier ON
-setInterval(() => {
-    fetch(`${env.SERVER_URL}/api/health`).catch(e => console.log(e));
-}, 1000 * 60 * 5);
+setInterval(
+  () => {
+    fetch(`${env.SERVER_URL}/api/health`).catch((e) => console.log(e));
+  },
+  1000 * 60 * 5,
+);
 
 export default app;

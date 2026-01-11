@@ -1,6 +1,6 @@
-import { IconTrendingDown, IconTrendingUp } from "@tabler/icons-react"
+import { IconTrendingDown, IconTrendingUp } from "@tabler/icons-react";
 
-import { Badge } from "@/components/ui/badge"
+import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardAction,
@@ -8,13 +8,11 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 
-export function SectionCards({ revenue, totalCustmors, pending, canceled }) {
-
+export function SectionCards({ revenue, totalCustmors, completed, canceled }) {
   return (
-    <div
-      className="*:data-[slot=card]:from-primary/5 *:data-[slot=card]:to-card dark:*:data-[slot=card]:bg-card grid grid-cols-1 gap-4 px-4 *:data-[slot=card]:bg-gradient-to-t *:data-[slot=card]:shadow-xs lg:px-6 @xl/main:grid-cols-2 @5xl/main:grid-cols-4">
+    <div className="*:data-[slot=card]:from-primary/5 *:data-[slot=card]:to-card dark:*:data-[slot=card]:bg-card grid grid-cols-1 gap-4 px-4 *:data-[slot=card]:bg-gradient-to-t *:data-[slot=card]:shadow-xs lg:px-6 @xl/main:grid-cols-2 @5xl/main:grid-cols-4">
       <Card className="@container/card">
         <CardHeader>
           <CardDescription>Revenue</CardDescription>
@@ -54,16 +52,14 @@ export function SectionCards({ revenue, totalCustmors, pending, canceled }) {
           <div className="line-clamp-1 flex gap-2 font-medium">
             Down 20% this period <IconTrendingDown className="size-4" />
           </div>
-          <div className="text-muted-foreground">
-            Custmores this month
-          </div>
+          <div className="text-muted-foreground">Custmores this month</div>
         </CardFooter>
       </Card>
       <Card className="@container/card">
         <CardHeader>
-          <CardDescription>Pending Orders</CardDescription>
+          <CardDescription>Completed Orders</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
-            {pending}
+            {completed}
           </CardTitle>
           <CardAction>
             <Badge variant="outline">
@@ -76,12 +72,12 @@ export function SectionCards({ revenue, totalCustmors, pending, canceled }) {
           <div className="line-clamp-1 flex gap-2 font-medium">
             Strong user retention <IconTrendingUp className="size-4" />
           </div>
-          <div className="text-muted-foreground">Complete pending orders</div>
+          <div className="text-muted-foreground">Completed orders</div>
         </CardFooter>
       </Card>
       <Card className="@container/card">
         <CardHeader>
-          <CardDescription>Active Customers</CardDescription>
+          <CardDescription>Canceled Orders</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
             {canceled}
           </CardTitle>
@@ -94,9 +90,12 @@ export function SectionCards({ revenue, totalCustmors, pending, canceled }) {
         </CardHeader>
         <CardFooter className="flex-col items-start gap-1.5 text-sm">
           <div className="line-clamp-1 flex gap-2 font-medium">
-            {((canceled / totalCustmors) * 100).toFixed(0)}% Customers canceled orders <IconTrendingDown className="size-4" />
+            {((canceled / totalCustmors) * 100).toFixed(0)}% Customers canceled
+            orders <IconTrendingDown className="size-4" />
           </div>
-          <div className="text-muted-foreground">Less cancelation better growth</div>
+          <div className="text-muted-foreground">
+            Less cancelation better growth
+          </div>
         </CardFooter>
       </Card>
     </div>

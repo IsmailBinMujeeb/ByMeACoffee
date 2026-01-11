@@ -1,0 +1,26 @@
+{
+  "name": "buymeacoffee",
+  "version": "1.0.0",
+  "description": "BuyMeACoffee is a modern application designed to streamline and enhance the hospitality experience. Built primarily with JavaScript, BuyMeACoffee combines an intuitive user interface with efficient workflows to help restaurants, cafes, and other dining establishments manage orders, tables, menus, and more.",
+  "main": "index.js",
+  "scripts": {
+    "dev:client": "cd client && npm run dev",
+    "dev:server": "cd server && npm run dev",
+    "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IsmailBinMujeeb/BuyMeACoffee.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/IsmailBinMujeeb/BuyMeACoffee/issues"
+  },
+  "homepage": "https://github.com/IsmailBinMujeeb/BuyMeACoffee#readme",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

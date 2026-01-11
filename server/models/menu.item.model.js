@@ -1,28 +1,30 @@
 import mongoose from "mongoose";
-import mongoosePaginate from 'mongoose-paginate-v2';
+import mongoosePaginate from "mongoose-paginate-v2";
 
-const menuItemSchema = new mongoose.Schema({
+const menuItemSchema = new mongoose.Schema(
+  {
     itemName: {
-        type: String,
-        required: true,
-        unique: true,
+      type: String,
+      required: true,
     },
 
     price: {
-        type: Number,
-        required: true,
+      type: Number,
+      required: true,
     },
 
     imageUrl: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
 
     description: {
-        type: String,
-        default: '',
+      type: String,
+      default: "",
     },
-}, { timestamps: true });
-menuItemSchema.plugin(mongoosePaginate)
+  },
+  { timestamps: true },
+);
+menuItemSchema.plugin(mongoosePaginate);
 
-export default mongoose.model('MenuItem', menuItemSchema);
+export default mongoose.model("MenuItem", menuItemSchema);

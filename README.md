@@ -1,6 +1,6 @@
-# DineFlow
+# BuyMeACoffee
 
-DineFlow is a modern application designed to streamline and enhance the hospitality experience. Built primarily with JavaScript, DineFlow combines an intuitive user interface with efficient workflows to help restaurants, cafes, and other dining establishments manage orders, tables, menus, and more.
+BuyMeACoffee is a modern application designed to streamline and enhance the hospitality experience. Built primarily with JavaScript, BuyMeACoffee combines an intuitive user interface with efficient workflows to help restaurants, cafes, and other dining establishments manage orders, tables, menus, and more.
 
 ## Features
 
@@ -31,27 +31,23 @@ DineFlow is a modern application designed to streamline and enhance the hospital
 
 1. **Clone the repository**
     ```bash
-    git clone https://github.com/IsmailBinMujeeb/DineFlow.git
-    cd DineFlow
+    git clone https://github.com/IsmailBinMujeeb/BuyMeACoffee.git
+    cd BuyMeACoffee
     ```
 
-2. **Setup Frontend**
+2. **Install Dependencies**
     ```bash
-    cd client
     npm install
-    npm run dev
     ```
 
-3. **Setup Backend**
-    ```bash
-    cd client
-    npm install
-    npm run dev
-    ```
+3. **Set Environment Variables**
+    - Create a `.env` file in the client and server directory.
+    - Copy the contents of `./server/.env.sample` and `./client/.env.example` into `./server/.env` and `./client/.env`, respectively.
+    - Fill in the required environment variables.
 
-3. **Run the application**
+3. **Start Application In Development**
     ```bash
-    npm start
+    npm run dev
     ```
 
 4. **Open in your browser**
