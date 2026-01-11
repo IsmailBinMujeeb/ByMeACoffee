@@ -1,14 +1,6 @@
 # BuyMeACoffee
 
-BuyMeACoffee is a modern application designed to streamline and enhance the hospitality experience. Built primarily with JavaScript, BuyMeACoffee combines an intuitive user interface with efficient workflows to help restaurants, cafes, and other dining establishments manage orders, tables, menus, and more.
-
-## Features
-
-- **Order Management**: Quickly take, modify, and track orders.
-- **Menu Customization**: Easily update menu items, prices, and categories.
-- **Table Management (TODO)**: Visualize and organize table assignments and availability.
-- **Real-Time Updates (TODO)**: Experience seamless updates across devices for staff and kitchen coordination.
-- **Responsive Design**: Optimized for desktops, tablets, and mobile devices.
+BuyMeACoffee is a modern application designed to streamline and enhance the hospitality experience. Built primarily with JavaScript, BuyMeACoffee combines an intuitive user interface with efficient workflows to help restaurants, cafes, and other coffee establishments manage orders, staffs, menus, and more.
 
 ## Tech Stack
 
@@ -22,7 +14,7 @@ BuyMeACoffee is a modern application designed to streamline and enhance the hosp
   - [![Express](https://img.shields.io/badge/Express.js-2B2E3A?logo=express&logoColor=fff)](#)
   - [![JWT](https://img.shields.io/badge/JWT-2B2E3A?logo=JSON%20web%20tokens&logoColor=fff)](#)
 
-- **Database**
+- **Database Level**
   - [![MongoDB](https://img.shields.io/badge/MonogDB-2B2E3A?logo=MongoDB&logoColor=fff)](#)
   - [![Mongoose](https://img.shields.io/badge/Mongoose-2B2E3A?logo=mongoose&logoColor=fff)](#)
   - [![Bcrypt](https://img.shields.io/badge/Bcrypt-2B2E3A?logo=letsencrypt&logoColor=fff)](#)
