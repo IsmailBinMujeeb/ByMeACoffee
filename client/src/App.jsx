@@ -10,6 +10,7 @@ import AddMenuPage from "./pages/AddMenu";
 import EditMenuPage from "./pages/EditMenu";
 import { useContext } from "react";
 import { AuthContext } from "@/context/authContext";
+import Home from "./pages/Home";
 
 function App() {
   const { role } = useContext(AuthContext);
@@ -18,6 +19,7 @@ function App() {
       <Routes>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Home />} />
         {role === "admin" && (
           <Route
             path="/dashboard"
