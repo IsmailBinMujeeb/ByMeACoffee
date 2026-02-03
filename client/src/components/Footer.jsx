@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Company Info */}
           <div>
-            <h3 className="text-2xl font-bold mb-4">BREWMASTER</h3>
+            <h3 className="text-2xl font-bold mb-4">Buy Me A Coffee</h3>
             <p className="text-gray-400 text-sm leading-relaxed mb-4">
               The ultimate coffee shop management solution for modern
               businesses.
@@ -183,7 +183,7 @@ const Footer = () => {
         <div className="pt-8 border-t border-white/10">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-gray-400 text-sm">
-              © {currentYear} Brewmaster. All rights reserved.
+              © {currentYear} Buy Me A Coffee. All rights reserved.
             </p>
             <div className="flex space-x-6">
               <a
