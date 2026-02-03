@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { Area, AreaChart, CartesianGrid, XAxis } from "recharts"
+import * as React from "react";
+import { Area, AreaChart, Bar, BarChart, CartesianGrid, XAxis } from "recharts";
 import {
   Card,
   CardAction,
@@ -9,10 +9,14 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
+} from "@/components/ui/card";
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart";
 
-export const description = "An interactive area chart"
+export const description = "An interactive area chart";
 
 const chartConfig = {
   visitors: {
@@ -23,10 +27,9 @@ const chartConfig = {
     label: "Revenue",
     color: "var(--primary)",
   },
-}
+};
 
 export function ChartAreaInteractive({ sales }) {
-
   return (
     <Card className="@container/card">
       <CardHeader>
@@ -39,12 +42,23 @@ export function ChartAreaInteractive({ sales }) {
         </CardDescription>
       </CardHeader>
       <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">
-        <ChartContainer config={chartConfig} className="aspect-auto h-[250px] w-full">
-          <AreaChart data={sales}>
+        <ChartContainer
+          config={chartConfig}
+          className="aspect-auto h-[250px] w-full"
+        >
+          <BarChart data={sales}>
             <defs>
               <linearGradient id="fillDesktop" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="var(--color-desktop)" stopOpacity={1.0} />
-                <stop offset="95%" stopColor="var(--color-desktop)" stopOpacity={0.1} />
+                <stop
+                  offset="5%"
+                  stopColor="var(--color-desktop)"
+                  stopOpacity={1.0}
+                />
+                <stop
+                  offset="95%"
+                  stopColor="var(--color-desktop)"
+                  stopOpacity={0.1}
+                />
               </linearGradient>
             </defs>
             <CartesianGrid vertical={false} />
@@ -55,12 +69,13 @@ export function ChartAreaInteractive({ sales }) {
               tickMargin={8}
               minTickGap={32}
               tickFormatter={(value) => {
-                const date = new Date(value)
+                const date = new Date(value);
                 return date.toLocaleDateString("en-US", {
                   month: "short",
                   day: "numeric",
                 });
-              }} />
+              }}
+            />
             <ChartTooltip
               cursor={false}
               content={
@@ -71,15 +86,18 @@ export function ChartAreaInteractive({ sales }) {
                       day: "numeric",
                     });
                   }}
-                  indicator="dot" />
-              } />
-            <Area
+                  indicator="dot"
+                />
+              }
+            />
+            <Bar
               dataKey="totalRevenue"
               type="natural"
               fill="white"
               stroke="var(--color-desktop)"
-              stackId="a" />
-          </AreaChart>
+              stackId="a"
+            />
+          </BarChart>
         </ChartContainer>
       </CardContent>
     </Card>

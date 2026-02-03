@@ -1,6 +1,5 @@
 import { AppSidebar } from "@/components/app-sidebar";
 import { ChartAreaInteractive } from "@/components/chart-area-interactive";
-import { DataTable } from "@/components/data-table";
 import { SectionCards } from "@/components/section-cards";
 import { SiteHeader } from "@/components/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
@@ -49,13 +48,11 @@ export default function Dashboard() {
         if (salesResponse.status === 404) {
           setSales([]);
         } else if (!salesResponse.ok) {
-          console.log(salesResponse);
           throw new Error(
             `Failed to fetch sales data: ${salesResponse.status}`,
           );
         } else {
           const salesData = await salesResponse.json();
-          console.log(salesData.revenue);
           setSales(salesData.revenue);
         }
       } catch (err) {

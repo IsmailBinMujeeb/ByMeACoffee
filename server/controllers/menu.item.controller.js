@@ -91,6 +91,9 @@ export const updateItem = async (req, res) => {
       imageUrl = await cloudinary(filePath);
     }
 
+    console.log(imageUrl);
+    console.log(role);
+
     if (role !== "admin")
       return res.status(403).json({ message: "Access denied: admin only" });
 
@@ -107,6 +110,8 @@ export const updateItem = async (req, res) => {
       },
       { new: true },
     );
+
+    console.log(newItem);
 
     if (!newItem)
       return res.status(403).json({ message: "item updation failed" });

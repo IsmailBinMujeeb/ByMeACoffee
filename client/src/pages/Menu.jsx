@@ -11,18 +11,20 @@ import {
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { SiteHeader } from "@/components/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
 import { ButtonGroup } from "@/components/ui/button-group";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "@/context/authContext";
 
 export default function MenuPage() {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { role } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -172,7 +174,24 @@ export default function MenuPage() {
                   <p>Price: ₹{item.price}</p>
                   <div className="flex gap-2 ">
                     <CardAction>
-                      <ButtonGroup>
+                      {role === "admin" ? (
+                        <ButtonGroup>
+                          <Button
+                            className="cursor-pointer"
+                            variant={"outline"}
+                            onClick={() => handleBuy(item._id, item.price)}
+                          >
+                            Buy
+                          </Button>
+                          <Button
+                            className="cursor-pointer"
+                            variant={"outline"}
+                            onClick={() => navigate(`/menu/edit/${item._id}`)}
+                          >
+                            Edit
+                          </Button>
+                        </ButtonGroup>
+                      ) : (
                         <Button
                           className="cursor-pointer"
                           variant={"outline"}
@@ -180,14 +199,7 @@ export default function MenuPage() {
                         >
                           Buy
                         </Button>
-                        <Button
-                          className="cursor-pointer"
-                          variant={"outline"}
-                          onClick={() => navigate(`/menu/edit/${item._id}`)}
-                        >
-                          Edit
-                        </Button>
-                      </ButtonGroup>
+                      )}
                     </CardAction>
                   </div>
                 </CardFooter>
