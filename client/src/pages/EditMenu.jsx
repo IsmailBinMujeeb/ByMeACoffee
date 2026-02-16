@@ -38,7 +38,7 @@ export default function EditMenuPage() {
 
   const formSchema = z.object({
     itemName: z.string().min(2).max(100),
-    price: z.number().min(0).max(10000),
+    price: z.string().min(0).max(10000),
     description: z.string().min(2).max(1000),
     imageUrl: z
       .instanceof(File)
