@@ -11,7 +11,7 @@ import {
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { SiteHeader } from "@/components/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { useEffect, useState } from "react";
+import { useEffect, useContext, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Toaster } from "@/components/ui/sonner";
@@ -21,13 +21,17 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Textarea } from "@/components/ui/textarea";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Spinner } from "@/components/ui/spinner";
+import { AuthContext } from "@/context/authContext";
 
 export default function EditMenuPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [isUpdating, setIsUpdating] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const { role } = useContext(AuthContext);
   const [preview, setPreview] = useState(null);
+  const navigate = useNavigate();
   const { itemId } = useParams();
 
   useEffect(() => {
@@ -161,6 +165,35 @@ export default function EditMenuPage() {
         </SidebarInset>
       </SidebarProvider>
     );
+  }
+
+  async function onDelete() {
+    try {
+      setIsDeleting(true);
+
+      const accessToken = localStorage.getItem("access-token");
+
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}menu-item/${itemId}`,
+        {
+          method: "DELETE",
+          headers: { Authorization: `Bearer ${accessToken}` },
+        },
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to delete menu item");
+      }
+
+      toast.success("Menu item deleted successfully.");
+      navigate("/menu");
+    } catch (err) {
+      toast.error(
+        err.message || "Something went wrong, Please try again later.",
+      );
+    } finally {
+      setIsDeleting(false);
+    }
   }
 
   return (
@@ -313,15 +346,40 @@ export default function EditMenuPage() {
                 </FormItem>
               )}
             />
-            {isUpdating ? (
-              <Button type="submit" className="cursor-pointer" disabled>
-                <Spinner />
-              </Button>
-            ) : (
-              <Button type="submit" className="cursor-pointer">
-                Submit
-              </Button>
-            )}
+            <div className="flex gap-4">
+              {isUpdating ? (
+                <Button type="button" className="cursor-pointer" disabled>
+                  <Spinner />
+                </Button>
+              ) : (
+                <Button type="submit" className="cursor-pointer">
+                  Submit
+                </Button>
+              )}
+              {role == "admin" && (
+                <>
+                  {isDeleting ? (
+                    <Button
+                      type="button"
+                      variant="destructive"
+                      className="cursor-pointer"
+                      disabled
+                    >
+                      <Spinner />
+                    </Button>
+                  ) : (
+                    <Button
+                      type="button"
+                      variant="destructive"
+                      className="cursor-pointer"
+                      onClick={onDelete}
+                    >
+                      Delete
+                    </Button>
+                  )}
+                </>
+              )}
+            </div>
           </form>
         </Form>{" "}
       </SidebarInset>
